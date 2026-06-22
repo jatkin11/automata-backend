@@ -1,12 +1,18 @@
 package com.example.automata_backend.mapper;
 
-import com.example.automata_backend.automata.*;
-import com.example.automata_backend.mapper.*;
-import com.example.automata_backend.dto.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.example.automata_backend.automata.Automata;
+import com.example.automata_backend.automata.DFA;
+import com.example.automata_backend.automata.NFA;
+import com.example.automata_backend.dto.NodeData;
+import com.example.automata_backend.dto.Position;
+import com.example.automata_backend.dto.ReactFlowEdge;
+import com.example.automata_backend.dto.ReactFlowGraph;
+import com.example.automata_backend.dto.ReactFlowNode;
 
 public class ReactFlowMapper {
 
@@ -14,7 +20,7 @@ public class ReactFlowMapper {
 
     public static <T> ReactFlowGraph fromAutomata(Automata<T> automata){
 
-        return new ReactFlowGraph(toNodes(automata), toEdges(automata));
+        return new ReactFlowGraph(getAutomataType(automata),toNodes(automata), toEdges(automata));
 
     }
 
@@ -100,7 +106,17 @@ public static <T> List<ReactFlowNode> toNodes(Automata<T> automata) {
         return fromNode+"_"+symbol+"_"+toNode;
     }
 
+    private static String getAutomataType(Automata<?> automata) {
+        if (automata instanceof DFA) {
+            return "DFA";
+        }
 
+        if (automata instanceof NFA) {
+            return "NFA";
+        }
+
+        return "UNKNOWN";
+    }
 
 
 

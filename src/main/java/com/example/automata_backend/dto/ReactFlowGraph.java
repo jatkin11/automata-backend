@@ -13,12 +13,6 @@ public class ReactFlowGraph {
     public ReactFlowGraph() {
     }
 
-    public ReactFlowGraph(List<ReactFlowNode> nodes, List<ReactFlowEdge> edges) {
-        this.nodes = nodes;
-        this.edges = edges;
-    }
-
-
     public ReactFlowGraph(String automataType, List<ReactFlowNode> nodes, List<ReactFlowEdge> edges) {
         this.automataType = automataType;
         this.nodes = nodes;
