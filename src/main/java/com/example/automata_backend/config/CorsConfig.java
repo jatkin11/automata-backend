@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.automata_backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +17,7 @@ public class CorsConfig {
                 registry.addMapping("/api/**")
                         .allowedOrigins(
                                 "https://automata.help",
+                                "https://www.automata.help",
                                 "http://localhost:5173",
                                 "http://localhost:3000"
                         )
