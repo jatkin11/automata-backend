@@ -1,5 +1,4 @@
 package com.example.automata_backend.regex;
 
-public class EmptyTokenRegex {
-    
+public class EmptyTokenRegex implements TokenisedRegex{
 }
