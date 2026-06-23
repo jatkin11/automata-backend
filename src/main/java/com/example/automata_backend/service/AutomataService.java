@@ -2,7 +2,10 @@ package com.example.automata_backend.service;
 
 import org.springframework.stereotype.Service;
 
+import com.example.automata_backend.algorithms.AutomataToRegexConverter;
 import com.example.automata_backend.algorithms.NfaToDfaConverter;
+import com.example.automata_backend.algorithms.RegexToNfaConverter;
+import com.example.automata_backend.algorithms.TokenisedRegexToString;
 import com.example.automata_backend.automata.DFA;
 import com.example.automata_backend.automata.NFA;
 import com.example.automata_backend.dto.ReactFlowGraph;
@@ -23,17 +26,17 @@ public class AutomataService {
     public String convertToRegex(ReactFlowGraph graph) {
         if ("DFA".equalsIgnoreCase(graph.getAutomataType())) {
             DFA dfa = ReactFlowReverseMapper.toDfa(graph);
-
-
-            //return AutomataToRegexConverter.convert(dfa);
-            return "TEST STRING 1";
+            return TokenisedRegexToString.toRegexString(AutomataToRegexConverter.convert(dfa));
         }
 
         NFA nfa = ReactFlowReverseMapper.toNfa(graph);
 
-        // Later:
-        // return AutomataToRegexConverter.convert(nfa);
-
-        return "TEST RETURN STRING 2";
+        return TokenisedRegexToString.toRegexString(AutomataToRegexConverter.convert(nfa));
     }
+
+    public ReactFlowGraph convertToNfa(String regexInput){
+        return ReactFlowMapper.fromAutomata(RegexToNfaConverter.regexToNfaConverterHelper(regexInput));
+    }
+
+
 }

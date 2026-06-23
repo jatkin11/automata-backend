@@ -32,4 +32,12 @@ public class AutomataController {
     public String convertToRegex(@RequestBody ReactFlowGraph graph) {
         return automataService.convertToRegex(graph);
     }
+
+    @PostMapping("/convert-to-nfa")
+    public ReactFlowGraph convertToNfa(@RequestBody String regexInput) {
+        return automataService.convertToNfa(regexInput);
+    }
+
+
+
 }
