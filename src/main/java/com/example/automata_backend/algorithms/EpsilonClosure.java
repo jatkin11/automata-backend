@@ -9,6 +9,8 @@ import java.util.Set;
 
 public class EpsilonClosure {
 
+    public static final char EPSILON = 'ε';
+
     public static Set<Integer> epsilonClosure(Set<Integer> states, Map<Integer, Map<Character,Set<Integer>>> transitions){ //NEED TO ADD FULL EPSILON CLOSURE
         Set<Integer> closure = new HashSet<>();
 
