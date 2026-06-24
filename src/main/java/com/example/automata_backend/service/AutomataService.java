@@ -3,8 +3,9 @@ package com.example.automata_backend.service;
 import org.springframework.stereotype.Service;
 
 import com.example.automata_backend.algorithms.AutomataToRegexConverter;
+import com.example.automata_backend.algorithms.GlushkovRegexToNfaConverter;
 import com.example.automata_backend.algorithms.NfaToDfaConverter;
-import com.example.automata_backend.algorithms.RegexToNfaConverter;
+import com.example.automata_backend.algorithms.RegexTokeniser;
 import com.example.automata_backend.algorithms.RemoveEpsilonTransitions;
 import com.example.automata_backend.algorithms.TokenisedRegexToString;
 import com.example.automata_backend.automata.DFA;
@@ -36,7 +37,8 @@ public class AutomataService {
     }
 
     public ReactFlowGraph convertToNfa(String regexInput){
-        return ReactFlowMapper.fromAutomata(RegexToNfaConverter.regexToNfaConverterHelper(regexInput));
+        //return ReactFlowMapper.fromAutomata(RegexToNfaConverter.regexToNfaConverterHelper(regexInput));
+        return ReactFlowMapper.fromAutomata(GlushkovRegexToNfaConverter.convert(new RegexTokeniser(regexInput).tokeniseRegex()));
     }
 
     public ReactFlowGraph minimiseNfa(ReactFlowGraph graph){
