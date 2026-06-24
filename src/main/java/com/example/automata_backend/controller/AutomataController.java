@@ -38,6 +38,11 @@ public class AutomataController {
         return automataService.convertToNfa(regexInput);
     }
 
+    @PostMapping("/minimise-nfa")
+    public ReactFlowGraph minimiseNfa(@RequestBody ReactFlowGraph graph) {
+        return automataService.minimiseNfa(graph);
+    }
+
 
 
 }
